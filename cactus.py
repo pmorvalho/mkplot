@@ -45,8 +45,13 @@ class Cactus(Plot, object):
         # making lines
         coords = []
         for d in data:
-            coords.append(np.arange(1, len(d[1]) + 1))  # xs (separate for each line)
-            coords.append(np.array(sorted(d[1])))
+            if not self.invert:
+                coords.append(np.arange(1, len(d[1]) + 1))  # xs (separate for each line)
+                coords.append(np.array(sorted(d[1])))
+            else:
+                coords.append(np.array(sorted(d[1])))
+                coords.append(np.arange(1, len(d[1]) + 1))  # xs (separate for each line)
+                
         lines = plt.plot(*coords, zorder=3)
 
         # setting line styles

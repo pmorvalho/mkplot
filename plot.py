@@ -57,6 +57,7 @@ class Plot():
         self.grid_style = options['grid_style']
         self.grid_width = options['grid_width']
         self.byname     = options['by_name']
+        self.invert     = options['invert']
 
         # where to save
         self.save_to = '{0}.{1}'.format(os.path.splitext(self.save_to)[0], self.backend)

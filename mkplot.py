@@ -68,7 +68,8 @@ def parse_options():
                                     'ylabel=',
                                     'ylog',
                                     'ymin=',
-                                    'ymax='])
+                                    'ymax=',
+                                    'invert'])
     except getopt.GetoptError as err:
         sys.stderr.write(str(err).capitalize() + '\n')
         usage()
@@ -161,6 +162,8 @@ def parse_options():
             options['y_min'] = float(arg)
         elif opt == '--ymax':
             options['y_max'] = float(arg)
+        elif opt == '--invert':
+            options['invert'] = True
         else:
             assert False, 'Unhandled option: {0} {1}'.format(opt, arg)
 
@@ -208,6 +211,7 @@ def usage():
     print('        -r, --replace=<json-string>     List of name replacements')
     print('                                        Format: {"name1": "$nice_name1$", "name2": "$nice_name2$"} (default = none)')
     print('        --reverse                       Use reversed sorting')
+    print('        --invert                        Invert both axis, x-axis and y-axis (cactus plot).')
     print('        --save-to=<string>              Where result figure should be saved')
     print('                                        Default value: plot')
     print('        --shape=<string>                Shape of the plot')
