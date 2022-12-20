@@ -34,7 +34,15 @@ def load_data(files, options):
         # expecting exactly one input file
         with open(files[0], 'r') as fp:
             # try:
-            rows = csv.reader(fp, delimiter=' ', quotechar='|')
+            csv_f = True
+            
+            for l in open(files[0], 'r').readlines():
+                if ',' not in l:
+                    csv_f = False
+            if not csv_f:
+                rows = csv.reader(fp, delimiter=' ', quotechar='|')
+            else:
+                rows = csv.reader(fp, delimiter=',', quotechar='|')
             rows = [row for row in rows]
 
             stats = []
@@ -153,7 +161,7 @@ def load_json(stat_arr, options):
     if options['repls']:
         data = [(options['repls'][n], v, s, l) if n in options['repls'] else (n, v, s, l) for n, v, s, l in data]
 
-    return sorted(data, key=lambda x: x[2] + len(x[1]) / sum(x[1]), reverse=not options['reverse'])
+    return sorted(data, key=lambda x: x[2] + len(x[1]) / sum(x[1]) if sum(x[1]) != 0 else x[2], reverse=not options['reverse'])
 
 
 #
@@ -258,4 +266,4 @@ def load_csv(names, stats, options):
     if options['only']:
         data = [d for i, d in enumerate(data) if names_orig[i] in options['only']]
 
-    return sorted(data, key=lambda x: x[2] + len(x[1]) / sum(x[1]), reverse=not options['reverse'])
+    return sorted(data, key=lambda x: x[2] + len(x[1]) / sum(x[1]) if sum(x[1]) != 0 else x[2], reverse=not options['reverse'])
