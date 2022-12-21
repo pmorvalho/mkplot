@@ -79,6 +79,7 @@
         "y_label": null,
         "y_log": false,
         "y_min": 0.000000001,
-        "y_max": null
+        "y_max": null,
+	"invert" : false
     }
 }
