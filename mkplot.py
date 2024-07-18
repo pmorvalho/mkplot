@@ -200,7 +200,7 @@ def usage():
     print('        --legend=<string-list>          Comma-separated list of keys to use in the legend of a plot')
     print('                                        Format: "program,prog_args" (default = program)')
     print('        --lloc=<string>                 Legend location')
-    print('                                        Available values: upper/center/lower left/right, center, best, off (default = upper left)')
+    print('                                        Available values: upper/center/lower/outside left/right, center, best, off (default = upper left)')
     print('        --lncol=<int>                   Number of columns in the legend')
     print('                                        Available values: [1 .. INT_MAX] (default = 1)')
     print('        -n, --by-name                   Assign line style to tools by their name')
